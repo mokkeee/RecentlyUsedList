@@ -19,29 +19,29 @@ class RecentlyUsedList(object):
 
     def append(self, data):
         if data in self.list:
-            self._move_first(data)
+            self.__move_first(data)
         else:
-            self._append_first(data)
+            self.__append_first(data)
 
-        if self._capacity_over():
-            self._remove_last()
+        if self.__capacity_over():
+            self.__remove_last()
 
         return self
 
-    def _append_first(self, data):
+    def __append_first(self, data):
         self.list.insert(0, data)
 
-    def _capacity_over(self):
+    def __capacity_over(self):
         if self.capacity is None:
             return False
         if self.capacity >= len(self.list):
             return False
         return True
 
-    def _remove_last(self):
+    def __remove_last(self):
         self.list.pop()
 
-    def _move_first(self, data):
+    def __move_first(self, data):
         self.list.remove(data)
-        self._append_first(data)
+        self.__append_first(data)
 
